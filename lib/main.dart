@@ -1,3 +1,4 @@
+import 'package:app_flutter/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -98,13 +99,18 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'MINSLDfjYou have pushed the button this many times:',
+              'to LoginPage pushed times:',
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            Image.asset("assets/imgs/arrow_dark.png", width: 80, height: 80),
+            GestureDetector(
+              child: Image.asset("assets/imgs/arrow_dark.png", width: 80, height: 80),
+              onTap: (){
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => LoginPage()));
+              }),
           ],
         ),
       ),
