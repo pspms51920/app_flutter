@@ -1,3 +1,4 @@
+import 'package:app_flutter/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -265,6 +266,8 @@ class _LoginDemoPageState extends State<LoginPage> {
             print("$_username + $_password");
           }
 
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MainPage()));
 
         },
       ),

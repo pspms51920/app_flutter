@@ -24,39 +24,39 @@ class RequestResponseInterceptor extends Interceptor {
     return options;
   }
 
-  @override
-  onError(DioError err) {
-    return err;
-  }
+  // @override
+  // onError(DioError err) {
+  //   return err;
+  // }
 
   @override
   onResponse(Response response) {
     LogUtil.d('response=========================> start\n ${response.data} response===============================>end\n');
-    if(response.request.responseType == ResponseType.stream)
-      return response;
-    if(response.request.responseType == ResponseType.plain)
-      response.data = jsonDecode(response.data);
-    if (response.data['code'] == 200) {
-      response.data = response.data['data'];
-    } else if(response.data['code'] == 401){// 用户认证失效
-      //如果userlogin页面已经存在了，就不再跳转
-      if(AppCore.getInstance().context != null && !AppCore.getInstance().userLoginContext){
-        // if(AppCore.getInstance().shopInfo != null){
-          Fun.clearLoginInfo();
-          Navigator.pushNamedAndRemoveUntil(AppCore.getInstance().context,'userLogin',(route) => route == null);
-        // }
-      }
-    } else if(response.data['code'] == 402){// 企业认证失效
-      //如果shoplogin页面已经存在了，就不再跳转
-      if(AppCore.getInstance().context != null && !AppCore.getInstance().shopLoginContext){
-        Fun.clearShopInfo();
-        Fun.clearLoginInfo();
-        Navigator.pushNamedAndRemoveUntil(AppCore.getInstance().context,'shopLogin',(route)=> route == null);
-      }
-    } else {
-      return DioError(error: response.data['code'], message: response.data['msg']);
-    }
-    return response;
+    // if(response.request.responseType == ResponseType.stream)
+    //   return response;
+    // if(response.request.responseType == ResponseType.plain)
+    //   response.data = jsonDecode(response.data);
+    // if (response.data['code'] == 200) {
+    //   response.data = response.data['data'];
+    // } else if(response.data['code'] == 401){// 用户认证失效
+    //   //如果userlogin页面已经存在了，就不再跳转
+    //   if(AppCore.getInstance().context != null && !AppCore.getInstance().userLoginContext){
+    //     // if(AppCore.getInstance().shopInfo != null){
+    //       Fun.clearLoginInfo();
+    //       Navigator.pushNamedAndRemoveUntil(AppCore.getInstance().context,'userLogin',(route) => route == null);
+    //     // }
+    //   }
+    // } else if(response.data['code'] == 402){// 企业认证失效
+    //   //如果shoplogin页面已经存在了，就不再跳转
+    //   if(AppCore.getInstance().context != null && !AppCore.getInstance().shopLoginContext){
+    //     Fun.clearShopInfo();
+    //     Fun.clearLoginInfo();
+    //     Navigator.pushNamedAndRemoveUntil(AppCore.getInstance().context,'shopLogin',(route)=> route == null);
+    //   }
+    // } else {
+    //   return DioError(error: response.data['code'], message: response.data['msg']);
+    // }
+    // return response;
   }
 
 }

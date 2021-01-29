@@ -7,6 +7,7 @@ import 'package:app_flutter/basic/configs/app.core.dart';
 import 'package:app_flutter/basic/configs/constant.dart';
 import 'package:app_flutter/basic/util/log_util.dart';
 import 'package:device_info/device_info.dart';
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +81,7 @@ class Config {
       ..baseUrl = URL_BASE
       ..connectTimeout = 10000
       ..receiveTimeout = 15000
-      ..contentType = ContentType.parse("application/json")
+      ..contentType = ContentType.parse("application/json") as String
       ..responseType = ResponseType.plain;
   }
 
