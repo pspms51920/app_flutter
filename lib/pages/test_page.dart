@@ -9,9 +9,14 @@ class SecondPage extends StatelessWidget {
       appBar: new AppBar(
           title: new Text('新页面')
       ),
-      body: new Center(
-        child: new Text(
-          '点击浮动按钮返回首页',
+      body: new PageView.custom(
+        childrenDelegate: new SliverChildBuilderDelegate(
+              (context, index) {
+            return new Center(
+              child: new Text('$index', style: new TextStyle(fontSize: 64.0)),
+            );
+          },
+          childCount: 3,
         ),
       ),
       floatingActionButton: new FloatingActionButton(

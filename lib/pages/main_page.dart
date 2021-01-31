@@ -1,7 +1,9 @@
 import 'package:app_flutter/basic/model/tabtitle_entity.dart';
 import 'package:app_flutter/basic/widget/tab_bottom.dart';
+import 'package:app_flutter/pages/home_page.dart';
 import 'package:app_flutter/pages/test_page.dart';
 import 'package:app_flutter/pages/login_page.dart';
+import 'package:app_flutter/pages/test_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -83,9 +85,9 @@ class _MainPageView extends State<MainPageState>
         children: <Widget>[
           Expanded(
             child: TabBarView(controller: mController, children: [
-              LoginPage(),
+              HomePage(),
+              WrapWidget(),
               SecondPage(),
-              LoginPage(),
             ]
                 // tabList.map((item) {
                 //   return Stack(children: <Widget>[
@@ -98,7 +100,7 @@ class _MainPageView extends State<MainPageState>
           ),
           Container(
             color: new Color(0xFFFFFFFF),
-            height: 44.0,
+            height: 54.0,
             child: TabBar(
               isScrollable: false,
               //是否可以滚动
