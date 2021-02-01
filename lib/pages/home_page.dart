@@ -1,4 +1,5 @@
 import 'package:app_flutter/basic/configs/constant.dart';
+import 'package:app_flutter/pages/game_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -240,14 +241,22 @@ class _HomePageView extends State<HomePageState> {
                                 Colors.deepOrange
                               ]),
                             ),
-                            child: Text(
-                              "秒玩",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            child:
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(
+                                        context, MaterialPageRoute(builder: (context) => GamePage()));
+                                  },
+                                  child: Text(
+                                    "秒玩",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+
                           ),
                         ),
                       ),
