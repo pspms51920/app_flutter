@@ -1,3 +1,4 @@
+import 'package:app_flutter/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -21,7 +22,9 @@ class SecondPage extends StatelessWidget {
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pop();
+          // Navigator.of(context).pop();
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SettingPage()));
         },
         child: new Icon(Icons.replay),
       ),
