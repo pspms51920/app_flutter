@@ -80,8 +80,8 @@ class SearchPageState extends State<SearchPage> {
     OutlineInputBorder _outlineInputBorder = OutlineInputBorder(
       // gapPadding: 0,
       borderSide: BorderSide(
-        // color: Color(0XFFF2F2F2),
-        color: Colors.white,
+        color: Color(0XFFF2F2F2),
+        // color: Colors.white,
       ),
     );
 
@@ -121,44 +121,96 @@ class SearchPageState extends State<SearchPage> {
                     padding: EdgeInsets.only(top: 0),
                     child:
 
-                    new TextFormField(
+                    new TextField(
                       controller: _userNameController,
                       focusNode: _focusNodeUserName,
                       cursorColor: Color(0xFFFF7A00),
-                      style: new TextStyle(
-                          fontSize: 12, color: Color(0xFFF3D3D3D),
-                          textBaseline: TextBaseline.alphabetic),
-                      //设置键盘类型
+                      onTap:(){
+                        FocusScope.of(context).requestFocus(_focusNodeUserName);
+                      },
+                      keyboardType: TextInputType.text,
+//                    autofocus: false,
+//                    obscureText: false,
+                      onEditingComplete: () {
+
+                      },
                       decoration: InputDecoration(
-                        hintStyle: TextStyle(textBaseline: TextBaseline.alphabetic),
-                        // hintText: "sdf",
-                        border: _outlineInputBorder,
-                        focusedBorder: _outlineInputBorder,
-                        enabledBorder: _outlineInputBorder,
-                        disabledBorder: _outlineInputBorder,
-                        focusedErrorBorder: _outlineInputBorder,
-                        errorBorder: _outlineInputBorder,
-                        //尾部添加清除按钮
+                        contentPadding: EdgeInsets.only(top: 0),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(3),
+                            borderSide: BorderSide.none,),
+                        hintText: '请输入',
+                        hintStyle: TextStyle(
+                          fontSize: 12,
+                          color: Color.fromRGBO(0, 0, 0, 0.32),
+                          fontWeight: FontWeight.w400,
+                        ),
                         suffixIcon: (_isShowClear)
                             ? IconButton(
-                                icon: Image.asset(
-                                  "assets/imgs/search_delete.webp",
-                                  width: ScreenUtil().setWidth(30),
-                                  height: ScreenUtil().setHeight(30),
-                                ),
-                                onPressed: () {
-                                  // 清空输入框内容
-                                  _userNameController.clear();
-                                },
+                            icon: Image.asset(
+                              "assets/imgs/search_delete.webp",
+                              width: ScreenUtil().setWidth(30),
+                              height: ScreenUtil().setHeight(30),
+                            ),
+                            onPressed: () {
+                              // 清空输入框内容
+                              _userNameController.clear();
+                            },
                             padding:EdgeInsets.only(right: 0)
-                              )
+                        )
                             : null,
                       ),
-                      //保存数据
-                      onSaved: (String value) {
-                        _username = value;
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                          color: Color(0xFFF3D3D3D),
+                          textBaseline: TextBaseline.alphabetic
+                      ),
+
+                      onChanged: (value){
+
                       },
                     ),
+
+
+                    // new TextFormField(
+                    //   controller: _userNameController,
+                    //   focusNode: _focusNodeUserName,
+                    //   cursorColor: Color(0xFFFF7A00),
+                    //   style: new TextStyle(
+                    //       fontSize: 12, color: Color(0xFFF3D3D3D),
+                    //       textBaseline: TextBaseline.alphabetic),
+                    //   //设置键盘类型
+                    //   decoration: InputDecoration(
+                    //     contentPadding: EdgeInsets.only(top: 0),
+                    //     hintText: "请输入",
+                    //     border: _outlineInputBorder,
+                    //     focusedBorder: _outlineInputBorder,
+                    //     enabledBorder: _outlineInputBorder,
+                    //     disabledBorder: _outlineInputBorder,
+                    //     focusedErrorBorder: _outlineInputBorder,
+                    //     errorBorder: _outlineInputBorder,
+                    //     //尾部添加清除按钮
+                    //     suffixIcon: (_isShowClear)
+                    //         ? IconButton(
+                    //             icon: Image.asset(
+                    //               "assets/imgs/search_delete.webp",
+                    //               width: ScreenUtil().setWidth(30),
+                    //               height: ScreenUtil().setHeight(30),
+                    //             ),
+                    //             onPressed: () {
+                    //               // 清空输入框内容
+                    //               _userNameController.clear();
+                    //             },
+                    //         padding:EdgeInsets.only(right: 0)
+                    //           )
+                    //         : null,
+                    //   ),
+                    //   //保存数据
+                    //   onSaved: (String value) {
+                    //     _username = value;
+                    //   },
+                    // ),
 
                   ),
                 ],
