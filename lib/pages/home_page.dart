@@ -1,5 +1,6 @@
 import 'package:app_flutter/basic/configs/constant.dart';
 import 'package:app_flutter/pages/game_page.dart';
+import 'package:app_flutter/pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -104,56 +105,57 @@ class _HomePageView extends State<HomePageState> {
     Widget itemGrid = new ClipRRect(
       borderRadius: BorderRadius.circular(8),
       child: Container(
-      // width: 109,
-      height: 171,
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Stack(
-            children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: FadeInImage.assetNetwork(
-                  placeholder: IMG_PATH + 'default_default.png',
-                  image: IMG_PATH + 'placeholder.png',
+        // width: 109,
+        height: 171,
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: FadeInImage.assetNetwork(
+                    placeholder: IMG_PATH + 'default_default.png',
+                    image: IMG_PATH + 'placeholder.png',
+                  ),
                 ),
-              ),
-              new Offstage(
-                  offstage: false,
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Image.asset(
-                      IMG_PATH + 'high_quality_goods.png',
-                      width: ScreenUtil.getInstance().setWidth(80),
-                      height: ScreenUtil.getInstance().setWidth(40),
-                    ),
-                  ))
-            ],
-          ),
-          new Padding(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(20))),
-          new Text('少年三国',
-              style: TextStyle(
-                  color: Color(0XFF1A1A1A),
-                  fontSize: 14,
-                  fontFamily: 'PingFang',
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 1,
-                  decoration: TextDecoration.none)),
-          new Padding(padding: EdgeInsets.only(top: ScreenUtil().setHeight(9))),
-          new Text('9月8日 玩过',
-              style: TextStyle(
-                  color: Color(0XFFEC7443),
-                  fontSize: 14,
-                  fontFamily: 'PingFang',
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 1,
-                  decoration: TextDecoration.none)),
-        ],
+                new Offstage(
+                    offstage: false,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Image.asset(
+                        IMG_PATH + 'high_quality_goods.png',
+                        width: ScreenUtil.getInstance().setWidth(80),
+                        height: ScreenUtil.getInstance().setWidth(40),
+                      ),
+                    ))
+              ],
+            ),
+            new Padding(
+                padding: EdgeInsets.only(top: ScreenUtil().setHeight(20))),
+            new Text('少年三国',
+                style: TextStyle(
+                    color: Color(0XFF1A1A1A),
+                    fontSize: 14,
+                    fontFamily: 'PingFang',
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
+                    decoration: TextDecoration.none)),
+            new Padding(
+                padding: EdgeInsets.only(top: ScreenUtil().setHeight(9))),
+            new Text('9月8日 玩过',
+                style: TextStyle(
+                    color: Color(0XFFEC7443),
+                    fontSize: 14,
+                    fontFamily: 'PingFang',
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
+                    decoration: TextDecoration.none)),
+          ],
+        ),
       ),
-    ),
     );
 
     //标签：一个渐变颜色的集合
@@ -241,22 +243,22 @@ class _HomePageView extends State<HomePageState> {
                                 Colors.deepOrange
                               ]),
                             ),
-                            child:
-                                GestureDetector(
-                                  onTap: (){
-                                    Navigator.push(
-                                        context, MaterialPageRoute(builder: (context) => GamePage()));
-                                  },
-                                  child: Text(
-                                    "秒玩",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => GamePage()));
+                              },
+                              child: Text(
+                                "秒玩",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
                                 ),
-
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -363,21 +365,29 @@ class _HomePageView extends State<HomePageState> {
               //     Color(0X66000000)sdfjlsd
               //   ]),
               // ),
-              child:           Row(
-                children: [
-                  Image.asset(
-                    "assets/imgs/home_search.png",
-                    width: ScreenUtil().setWidth(54),
-                    height: ScreenUtil().setHeight(30),
-                  ),
-                  Text(
-                    "搜索",
-                    style: TextStyle(
-                      color: Color(0XFFFFFFFF),
-                      fontSize: 13.0,
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchPage()));
+                },
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/imgs/home_search.png",
+                      width: ScreenUtil().setWidth(54),
+                      height: ScreenUtil().setHeight(30),
                     ),
-                  ),
-                ],
+                    Text(
+                      "搜索",
+                      style: TextStyle(
+                        color: Color(0XFFFFFFFF),
+                        fontSize: 13.0,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -444,7 +454,7 @@ class _HomePageView extends State<HomePageState> {
               //   color: Colors.lightBlue[100 * (index % 9)],
               //   child: new Text('list item $index'),
               // );
-            }, childCount: 3 //50个列表项
+            }, childCount: 50 //50个列表项
                 ),
           ),
         ],

@@ -18,8 +18,8 @@ class _LoginDemoPageState extends State<LoginPage> {
   //表单状态
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  var _password = ''; //用户名
-  var _username = ''; //密码
+  var _password = ''; //密码
+  var _username = ''; //用户名
   var _isShowPwd = false; //是否显示密码
   var _isShowClear = false; //是否显示输入框尾部的清除按钮
 
@@ -141,7 +141,7 @@ class _LoginDemoPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 new Container(
-                  width: 210,
+                  width: 240,
                   height: 60,
                   alignment: Alignment.bottomLeft,
                   child: new TextFormField(
@@ -163,7 +163,11 @@ class _LoginDemoPageState extends State<LoginPage> {
                       //尾部添加清除按钮
                       suffixIcon: (_isShowClear)
                           ? IconButton(
-                              icon: Icon(Icons.clear),
+                              icon: Image.asset(
+                                "assets/imgs/search_delete.webp",
+                                width: ScreenUtil().setWidth(30),
+                                height: ScreenUtil().setHeight(30),
+                              ),
                               onPressed: () {
                                 // 清空输入框内容
                                 _userNameController.clear();
@@ -179,12 +183,12 @@ class _LoginDemoPageState extends State<LoginPage> {
                     },
                   ),
                 ),
-                new Padding(padding: EdgeInsets.only(left: 5,right: 10),
-                child: Image.asset(
-                  "assets/imgs/search_delete.webp",
-                  width: ScreenUtil().setWidth(30),
-                  height: ScreenUtil().setHeight(30),
-                ),),
+                // new Padding(padding: EdgeInsets.only(left: 5,right: 10),
+                // child: Image.asset(
+                //   "assets/imgs/search_delete.webp",
+                //   width: ScreenUtil().setWidth(30),
+                //   height: ScreenUtil().setHeight(30),
+                // ),),
                 Text(
                   "获取验证码",
                   style: TextStyle(
