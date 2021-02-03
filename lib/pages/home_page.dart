@@ -1,8 +1,10 @@
 import 'package:app_flutter/basic/configs/constant.dart';
+import 'package:app_flutter/basic/widget/free_easy_footer.dart';
 import 'package:app_flutter/pages/game_page.dart';
 import 'package:app_flutter/pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -23,6 +25,10 @@ class HomePageState extends StatefulWidget {
 }
 
 class _HomePageView extends State<HomePageState> {
+
+  EasyRefreshController easycontroller = new EasyRefreshController();
+  ScrollController scrollController = new ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -366,11 +372,9 @@ class _HomePageView extends State<HomePageState> {
               //   ]),
               // ),
               child: GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SearchPage()));
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SearchPage()));
                 },
                 child: Row(
                   children: [
@@ -395,69 +399,94 @@ class _HomePageView extends State<HomePageState> {
       ),
     );
 
+    DateTime nowDate = DateTime.now();
+    String fillChar = nowDate.minute < 10 ? "0" : "";
+    String timenow =
+        '${DateTime
+            .now()
+            .hour}' + ':' + fillChar + '${DateTime
+            .now()
+            .minute}';
+
+
     //因为本路由没有使用Scaffold，为了让子级Widget(如Text)使用
     //Material Design 默认的样式风格,我们使用Material作为本路由的根。
     return Material(
       color: Color(0xF8F8F8),
-      child: CustomScrollView(
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: Stack(
-              children: [
-                swiper,
-                topTitle,
-              ],
-            ),
-          ),
+      child: new EasyRefresh(
+        controller: easycontroller,
+        scrollController: scrollController,
+                       header: ClassicalHeader(refreshText:'下拉刷新', refreshReadyText:'释放刷新', refreshingText:'正在刷新', refreshedText:'刷新完成', infoText: '更新于 '+timenow),
+                       footer: ClassicalFooter(loadText:'上拉加载', loadReadyText:'准备加载', loadingText:'正在加载', loadedText:'加载完成', infoText: '更新于 '+timenow, noMoreText: '加载完成'),
+        // footer: FreeEasyFooter(),
 
-          SliverToBoxAdapter(
-            child: gridTitle,
-          ),
+        onRefresh: ()async{
 
-          SliverPadding(
-            padding: const EdgeInsets.all(8.0),
-            sliver: new SliverGrid(
-              //Grid
-              gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, //Grid按两列显示
-                mainAxisSpacing: 1.0,
-                crossAxisSpacing: 8.0,
-                childAspectRatio: 0.63,
-              ),
-              delegate: new SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  //创建子widget
-                  return itemGrid;
-                  //   new Container(
-                  //   alignment: Alignment.center,
-                  //   color: Colors.cyan[100 * (index % 9)],
-                  //   child: new Text('grid item $index'),
-                  // );
-                },
-                childCount: 3,
+        },
+        onLoad: ()async{
+
+        },
+
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverToBoxAdapter(
+              child: Stack(
+                children: [
+                  swiper,
+                  topTitle,
+                ],
               ),
             ),
-          ),
 
-          SliverToBoxAdapter(
-            child: listTitle,
-          ),
+            SliverToBoxAdapter(
+              child: gridTitle,
+            ),
 
-          //List
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-              //创建列表项
-              return itemList;
-              //   new Container(
-              //   alignment: Alignment.center,
-              //   color: Colors.lightBlue[100 * (index % 9)],
-              //   child: new Text('list item $index'),
-              // );
-            }, childCount: 50 //50个列表项
+            SliverPadding(
+              padding: const EdgeInsets.all(8.0),
+              sliver: new SliverGrid(
+                //Grid
+                gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3, //Grid按两列显示
+                  mainAxisSpacing: 1.0,
+                  crossAxisSpacing: 8.0,
+                  childAspectRatio: 0.63,
                 ),
-          ),
-        ],
+                delegate: new SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    //创建子widget
+                    return itemGrid;
+                    //   new Container(
+                    //   alignment: Alignment.center,
+                    //   color: Colors.cyan[100 * (index % 9)],
+                    //   child: new Text('grid item $index'),
+                    // );
+                  },
+                  childCount: 3,
+                ),
+              ),
+            ),
+
+            SliverToBoxAdapter(
+              child: listTitle,
+            ),
+
+            //List
+            new SliverList(
+              delegate: new SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                //创建列表项
+                return itemList;
+                //   new Container(
+                //   alignment: Alignment.center,
+                //   color: Colors.lightBlue[100 * (index % 9)],
+                //   child: new Text('list item $index'),
+                // );
+              }, childCount: 10 //50个列表项
+                  ),
+            ),
+          ],
+        ),
       ),
     );
   }

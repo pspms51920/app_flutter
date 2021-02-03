@@ -84,7 +84,9 @@ class _MainPageView extends State<MainPageState>
       body: Column(
         children: <Widget>[
           Expanded(
-            child: TabBarView(controller: mController, children: [
+            child: TabBarView(
+                physics: NeverScrollableScrollPhysics(),
+                controller: mController, children: [
               HomePage(),
               WrapWidget(),
               SecondPage(),

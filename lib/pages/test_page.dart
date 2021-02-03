@@ -20,13 +20,23 @@ class SecondPage extends StatelessWidget {
           childCount: 3,
         ),
       ),
-      floatingActionButton: new FloatingActionButton(
+      floatingActionButton: RaisedButton(
         onPressed: () {
           // Navigator.of(context).pop();
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => SettingPage()));
         },
-        child: new Icon(Icons.replay),
+        color: Colors.orange,
+        child: Text(
+          "设置",
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 17,
+              fontFamily: 'PingFang',
+              letterSpacing: 1,
+              fontWeight: FontWeight.w600,
+              decoration: TextDecoration.none),
+        ),
       ),
     );
   }
