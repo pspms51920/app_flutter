@@ -140,8 +140,11 @@ class _LoginDemoPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                new Expanded(
+                  flex: 1,
+                    child:
                 new Container(
-                  width: 240,
+                  // width: 240,
                   height: 60,
                   alignment: Alignment.bottomLeft,
                   child: new TextFormField(
@@ -183,6 +186,7 @@ class _LoginDemoPageState extends State<LoginPage> {
                     },
                   ),
                 ),
+      ),
                 // new Padding(padding: EdgeInsets.only(left: 5,right: 10),
                 // child: Image.asset(
                 //   "assets/imgs/search_delete.webp",
@@ -200,7 +204,7 @@ class _LoginDemoPageState extends State<LoginPage> {
             ),
             new Container(
               color: Color(0xFFCCCCCC),
-              width: 325,
+              width: double.infinity,
               height: 1,
             ),
             new Padding(padding: EdgeInsets.only(top: 10)),
@@ -226,7 +230,7 @@ class _LoginDemoPageState extends State<LoginPage> {
             ),
             new Container(
               color: Color(0xFFCCCCCC),
-              width: 325,
+              width: double.infinity,
               height: 1,
             ),
           ],

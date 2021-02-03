@@ -92,12 +92,16 @@ class SearchPageState extends State<SearchPage> {
     );
 
     Widget topSearch = Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+
+        new Expanded(
+          flex: 1,
+            child:
         ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: Container(
-            width: 284,
+            // width: 284,
             height: 27,
             alignment: Alignment.center,
             color: Color(0XFFF2F2F2),
@@ -114,8 +118,11 @@ class SearchPageState extends State<SearchPage> {
                     width: ScreenUtil().setWidth(54),
                     height: ScreenUtil().setHeight(30),
                   ),
+                  new Expanded(
+                    flex: 1,
+                    child:
                   new Container(
-                    width: 243,
+                    // width: 243,
                     height: 27,
                     alignment: Alignment.bottomLeft,
                     padding: EdgeInsets.only(top: 0),
@@ -213,11 +220,14 @@ class SearchPageState extends State<SearchPage> {
                     // ),
 
                   ),
+            ),
                 ],
               ),
             ),
           ),
         ),
+    ),
+
         new Padding(
           padding: EdgeInsets.only(left: 15, right: 15),
           child: Text(
