@@ -1,5 +1,4 @@
 import 'package:app_flutter/basic/configs/constant.dart';
-import 'package:app_flutter/basic/widget/free_easy_footer.dart';
 import 'package:app_flutter/pages/game_page.dart';
 import 'package:app_flutter/pages/search_page.dart';
 import 'package:flutter/material.dart';
@@ -418,7 +417,7 @@ class _HomePageView extends State<HomePageState> {
         scrollController: scrollController,
                        header: ClassicalHeader(refreshText:'下拉刷新', refreshReadyText:'释放刷新', refreshingText:'正在刷新', refreshedText:'刷新完成', infoText: '更新于 '+timenow),
                        footer: ClassicalFooter(loadText:'上拉加载', loadReadyText:'准备加载', loadingText:'正在加载', loadedText:'加载完成', infoText: '更新于 '+timenow, noMoreText: '加载完成'),
-        // footer: FreeEasyFooter(),
+        // footer: LoadEasyFooter(),
 
         onRefresh: ()async{
 

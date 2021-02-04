@@ -3,11 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-//import 'src/footer/load_indicator.dart';
-//import 'src/footer/footer.dart';
-
 /// 球脉冲Footer
-class FreeEasyFooter extends Footer {
+class LoadEasyFooter extends Footer {
   /// Key
   final Key key;
 
@@ -19,7 +16,7 @@ class FreeEasyFooter extends Footer {
 
   final LinkFooterNotifier linkNotifier = LinkFooterNotifier();
 
-  FreeEasyFooter({
+  LoadEasyFooter({
     this.key,
     this.color = Colors.blue,
     this.backgroundColor = Colors.transparent,
